@@ -4,23 +4,16 @@ using Microsoft.Extensions.Options;
 
 namespace ConsoleApp
 {
-    class Startup
+    class Startup(
+        IConfiguration configuration,
+        ILogger<Startup> logger,
+        IOptions<AppSettings> settings)
     {
-        public Startup(
-            IConfiguration configuration,
-            ILogger<Startup> logger,
-            IOptions<AppSettings> settings)
-        {
-            Configuration = configuration;
-            Logger = logger;
-            Settings = settings;
-        }
+        IConfiguration Configuration { get; } = configuration;
 
-        IConfiguration Configuration { get; }
+        ILogger<Startup> Logger { get; } = logger;
 
-        ILogger<Startup> Logger { get; }
-
-        IOptions<AppSettings> Settings { get; }
+        IOptions<AppSettings> Settings { get; } = settings;
 
         public void Run()
         {
